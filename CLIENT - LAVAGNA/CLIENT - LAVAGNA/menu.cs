@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace SERVER___LAVAGNA
+namespace Server_Lavagna
 {
     class Program
     {
@@ -72,11 +72,7 @@ namespace SERVER___LAVAGNA
                     Console.WriteLine($"Messaggio ricevuto: {messaggio}");
 
                     string[] dati = messaggio.Split(';');
-                    if (dati.Length == 0)
-                    {
-                        Console.WriteLine("Messaggio vuoto ricevuto, ignorato.");
-                        continue;
-                    }
+                    if (dati.Length == 0) continue;
 
                     string comando = dati[0];
 
@@ -96,13 +92,9 @@ namespace SERVER___LAVAGNA
                     }
                 }
             }
-            catch (SocketException ex)
+            catch (SocketException)
             {
-                Console.WriteLine($"Connessione interrotta dal client: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Errore inatteso: {ex.Message}");
+                Console.WriteLine("Connessione interrotta dal client.");
             }
             finally
             {

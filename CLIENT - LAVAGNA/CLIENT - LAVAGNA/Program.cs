@@ -16,7 +16,17 @@ namespace CLIENT___LAVAGNA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            // Mostra il form menu
+            menu menuForm = new menu();
+            menuForm.ShowDialog();
+
+            // Se l'utente ha scelto di avviare la lavagna, apri Form1
+            if (menuForm.AvviaLavagna)
+            {
+                Client client = new Client("127.0.0.1", 5000); // Configura il client
+                Application.Run(new Form1(menuForm.NomeUtente, client));
+            }
         }
     }
 }
